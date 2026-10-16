@@ -8,17 +8,16 @@ import {
     signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-// Your exact Firebase configuration from the console
+// Your exact Firebase configuration with the corrected API key
 const firebaseConfig = {
-  apiKey: "AIzaSyAxEq_LQg6g2H5U1JgzMYpdOzMM3L2LjxQ",
-  authDomain: "autopulse-8deed.firebaseapp.com",
-  projectId: "autopulse-8deed",
-  storageBucket: "autopulse-8deed.firebasestorage.app",
-  messagingSenderId: "99940181400",
-  appId: "1:99940181400:web:5703370439c3a8818f77ed",
-  measurementId: "G-C18DEYYC3K"
+    apiKey: "AIzaSyAxEq_LQg6g2H5U1JgzMYpdOzMM3L2LjxQ",
+    authDomain: "autopulse-8deed.firebaseapp.com",
+    projectId: "autopulse-8deed",
+    storageBucket: "autopulse-8deed.firebasestorage.app",
+    messagingSenderId: "99940181400",
+    appId: "1:99940181400:web:5703370439c3a8818f77ed",
+    measurementId: "G-C18DEYYC3K"
 };
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -66,15 +65,23 @@ mainBtn.addEventListener('click', async () => {
 
     try {
         mainBtn.textContent = "Processing...";
+        let userCredential;
+        
         if (isLoginMode) {
-            await signInWithEmailAndPassword(auth, email, password);
+            userCredential = await signInWithEmailAndPassword(auth, email, password);
         } else {
-            await createUserWithEmailAndPassword(auth, email, password);
+            userCredential = await createUserWithEmailAndPassword(auth, email, password);
         }
         
-        // Save login state to browser memory
+        // Extract the user's name or use the first part of their email
+        const user = userCredential.user;
+        const displayName = user.displayName || user.email.split('@')[0];
+        
+        // Save name and login state to browser memory
+        localStorage.setItem('autopulse-name', displayName);
         localStorage.setItem('autopulse_user', 'true');
         window.location.href = "dashboard.html"; 
+        
     } catch (error) {
         console.error("Auth Error:", error);
         alert(error.message);
@@ -87,14 +94,19 @@ if (googleBtn) {
     googleBtn.addEventListener('click', async () => {
         try {
             googleBtn.textContent = "Connecting...";
-            await signInWithPopup(auth, googleProvider);
+            const result = await signInWithPopup(auth, googleProvider);
             
-            // Save login state to browser memory
+            // Extract the user's real name from their Google Account
+            const user = result.user;
+            const displayName = user.displayName || user.email.split('@')[0];
+            
+            // Save name and login state to browser memory
+            localStorage.setItem('autopulse-name', displayName);
             localStorage.setItem('autopulse_user', 'true');
             window.location.href = "dashboard.html"; 
+            
         } catch (error) {
             console.error("Google Auth Error:", error);
-            // THIS IS THE FIX: Shows the real Firebase error so we can debug Vercel
             alert("Firebase Error: " + error.message);
             googleBtn.textContent = "Sign In with Google";
         }
