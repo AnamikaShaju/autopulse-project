@@ -10,14 +10,15 @@ import {
 
 // Your exact Firebase configuration from the console
 const firebaseConfig = {
-    apiKey: "AIzaSyAxEq_LQg6g2H5UlJgzNYpdOzMM3L2LjxQ",
-    authDomain: "autopulse-8deed.firebaseapp.com",
-    projectId: "autopulse-8deed",
-    storageBucket: "autopulse-8deed.firebasestorage.app",
-    messagingSenderId: "99940181400",
-    appId: "1:99940181400:web:5703370439c3a8818f77ed",
-    measurementId: "G-C18DEYYC3K"
+  apiKey: "AIzaSyAxEq_LQg6g2H5U1JgzMYpdOzMM3L2LjxQ",
+  authDomain: "autopulse-8deed.firebaseapp.com",
+  projectId: "autopulse-8deed",
+  storageBucket: "autopulse-8deed.firebasestorage.app",
+  messagingSenderId: "99940181400",
+  appId: "1:99940181400:web:5703370439c3a8818f77ed",
+  measurementId: "G-C18DEYYC3K"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
