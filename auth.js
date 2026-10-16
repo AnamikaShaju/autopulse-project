@@ -1,3 +1,4 @@
+// Import Firebase directly from Google's CDN for Vanilla JS projects
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { 
     getAuth, 
@@ -7,6 +8,7 @@ import {
     signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
+// Your exact Firebase configuration from the console
 const firebaseConfig = {
     apiKey: "AIzaSyAxEq_LQg6g2H5UlJgzNYpdOzMM3L2LjxQ",
     authDomain: "autopulse-8deed.firebaseapp.com",
@@ -17,10 +19,12 @@ const firebaseConfig = {
     measurementId: "G-C18DEYYC3K"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
+// Grab the UI elements from our login.html page
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const mainBtn = document.getElementById('login-btn');
@@ -31,6 +35,7 @@ const subtitle = document.querySelector('.login-card p');
 
 let isLoginMode = true;
 
+// 1. Toggle between "Sign In" and "Create Account"
 authSwitchDiv.addEventListener('click', (e) => {
     if (e.target.tagName === 'SPAN') {
         isLoginMode = !isLoginMode;
@@ -48,6 +53,7 @@ authSwitchDiv.addEventListener('click', (e) => {
     }
 });
 
+// 2. Handle Email/Password Authentication
 mainBtn.addEventListener('click', async () => {
     const email = emailInput.value.trim();
     const password = passwordInput.value;
@@ -75,6 +81,7 @@ mainBtn.addEventListener('click', async () => {
     }
 });
 
+// 3. Handle Google Authentication
 if (googleBtn) {
     googleBtn.addEventListener('click', async () => {
         try {
@@ -86,7 +93,8 @@ if (googleBtn) {
             window.location.href = "dashboard.html"; 
         } catch (error) {
             console.error("Google Auth Error:", error);
-            alert("Google Sign-In Error: Make sure you are using 'localhost' in your URL, not 127.0.0.1.");
+            // THIS IS THE FIX: Shows the real Firebase error so we can debug Vercel
+            alert("Firebase Error: " + error.message);
             googleBtn.textContent = "Sign In with Google";
         }
     });
