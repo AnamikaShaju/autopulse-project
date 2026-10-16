@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPulse | Secure Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific styles for the login screen to center the box */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-base);
+        }
+        .login-card {
+            background-color: var(--bg-surface);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-card .logo {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            box-sizing: border-box;
+        }
+        .btn-full {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .auth-switch {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .auth-switch span {
+            color: var(--accent);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="logo">
+            <span class="logo-icon">⬡</span> AutoPulse
+        </div>
+        <h2 style="margin-top: 0;">Welcome Back</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">Sign in to access your digital glovebox.</p>
+
+        <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="austin@example.com">
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+
+        <button id="login-btn" class="btn-primary btn-full">Sign In</button>
+        <button id="google-login-btn" class="btn-secondary btn-full" style="margin-top: 15px;">Sign In with Google</button>
+
+        <div class="auth-switch">
+            Don't have an account? <span id="switch-to-signup">Create one</span>
+        </div>
+    </div>
+<script type="module" src="auth.js"></script>
+</body>
+    <!-- We will link auth.js here in the next step -->
+</html>

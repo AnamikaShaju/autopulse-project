@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPulse | Fuel Logs & Trip Estimator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">⬡</span> AutoPulse
+            </div>
+            
+            <div class="menu-section">
+                <p class="menu-label">PAGES</p>
+                <ul class="menu-list">
+                    <li><span class="icon">📊</span> Dashboard <span class="arrow">›</span></li>
+                    <li><span class="icon">🚘</span> My Vehicles <span class="arrow">›</span></li>
+                    <li><span class="icon">📁</span> Document Vault <span class="badge">1</span> <span class="arrow">›</span></li>
+                    <li><span class="icon">🛠️</span> Workshop Bills <span class="arrow">›</span></li>
+                    <li class="active"><span class="icon">⛽</span> Fuel Logs <span class="arrow">›</span></li>
+                </ul>
+            </div>
+
+            <div class="menu-section">
+                <p class="menu-label">UI ELEMENTS</p>
+                <ul class="menu-list">
+                    <li><span class="icon">⚙️</span> Settings</li>
+                    <li><span class="icon">🔔</span> Alerts</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="main-content">
+            <!-- TOP NAVBAR -->
+            <header class="topbar">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="user-profile">
+                    <span class="notification-icon">🔔</span>
+                    <div class="profile-info">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Austin" alt="Profile" class="avatar">
+                        <div class="profile-text">
+                            <span class="name">Austin Robertson</span>
+                            <span class="role">Vehicle Owner</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <h1 class="page-title">Fuel Logs & Estimator</h1>
+
+                <!-- HERO SECTION -->
+                <div class="hero-card">
+                    <div class="hero-text">
+                        <h2>Trip Cost Estimator</h2>
+                        <p>Planning a weekend drive? Enter your destination distance. AutoPulse will use your actual historic km/L and current petrol prices to calculate your exact fuel budget.</p>
+                        <div class="hero-buttons">
+                            <button class="btn-primary">Calculate Trip Cost</button>
+                            <button class="btn-secondary">Log New Refuel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABLE SECTION -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Mileage History</h3>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Odometer (km)</th>
+                                <th>Fuel Added (L)</th>
+                                <th>Efficiency (km/L)</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Oct 12, 2026</td>
+                                <td>14,500</td>
+                                <td>30.5</td>
+                                <td>14.8</td>
+                                <td class="status-text" style="color: #00e676;">Optimal</td>
+                            </tr>
+                            <tr>
+                                <td>Sep 28, 2026</td>
+                                <td>14,050</td>
+                                <td>32.0</td>
+                                <td>14.1</td>
+                                <td class="status-text" style="color: var(--accent);">Slight Drop</td>
+                            </tr>
+                            <tr>
+                                <td>Sep 10, 2026</td>
+                                <td>13,600</td>
+                                <td>30.0</td>
+                                <td>15.0</td>
+                                <td class="status-text" style="color: #00e676;">Optimal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

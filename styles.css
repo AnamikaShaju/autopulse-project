@@ -386,3 +386,23 @@ main {
     white-space: pre-wrap;
     color: var(--accent);
 }
+/* Settings Page - Theme Swatches */
+.theme-swatches {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.swatch:hover {
+    transform: scale(1.2);
+    border-color: #ffffff;
+}
