@@ -1,0 +1,206 @@
+/* Sets up our customizable colors and default dark mode values */
+:root {
+    --accent-color: #a8e6cf; /* Default pastel green */
+    --bg-color: #181818;
+    --card-bg: #242424;
+    --text-main: #e0e0e0;
+    --text-muted: #9e9e9e;
+    --grid-color: rgba(255, 255, 255, 0.04);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    
+    /* Faded Graph Notebook Background */
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 30px 30px;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Grainy Texture Overlay using an inline SVG noise filter */
+.grain-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; /* Lets you click through the texture */
+    z-index: 9999;
+    opacity: 0.25;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+    text-shadow: 0 0 15px var(--accent-color);
+    opacity: 0.9;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* Color Picker Styling */
+.color-picker-container {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card-bg);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+input[type="color"] {
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 2px solid var(--text-muted);
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+/* Minimal Card Layout */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.card h2 {
+    margin-top: 0;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    display: inline-block;
+    color: var(--text-main);
+}
+
+.alert-card {
+    border-left: 4px solid var(--accent-color);
+}
+
+/* Buttons */
+.primary-btn {
+    background-color: var(--accent-color);
+    color: #111;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.primary-btn:hover {
+    opacity: 0.85;
+}
+
+/* Upload Grid */
+.upload-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.upload-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px dashed var(--text-muted);
+    border-radius: 12px;
+    padding: 20px 15px;
+    text-align: center;
+    transition: border-color 0.2s ease;
+}
+
+.upload-box:hover {
+    border-color: var(--accent-color);
+}
+
+.upload-box h3 {
+    font-size: 0.95rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+/* Hide default file input and style the label */
+input[type="file"] {
+    display: none;
+}
+
+.upload-btn {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--accent-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+.upload-btn:hover {
+    background-color: var(--accent-color);
+    color: #111;
+}
+
+.status {
+    font-size: 0.8rem;
+    margin-top: 12px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+}
+
+#ai-output-data {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}

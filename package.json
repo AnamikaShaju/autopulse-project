@@ -1,0 +1,17 @@
+{
+  "name": "autopulse",
+  "version": "1.0.0",
+  "description": "AutoPulse: AI-Assisted Vehicle Telemetry & Digital Glovebox",
+  "main": "app.js",
+  "scripts": {
+    "start": "echo \"Ready for Vercel deployment!\""
+  },
+  "keywords": [
+    "autopulse",
+    "digital-glovebox",
+    "vehicle-assistant",
+    "vercel"
+  ],
+  "author": "AutoPulse Developer",
+  "license": "MIT"
+}

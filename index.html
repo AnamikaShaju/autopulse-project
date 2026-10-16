@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPulse | Digital Glovebox</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- This empty div is for our grainy background texture effect -->
+    <div class="grain-overlay"></div>
+
+    <div class="container">
+        <header>
+            <h1>AutoPulse</h1>
+            <p>Your Digital Glovebox & Vehicle Companion</p>
+            
+            <!-- Customizable Pastel Color Picker -->
+            <div class="color-picker-container">
+                <label for="accent-color">Accent Color:</label>
+                <input type="color" id="accent-color" value="#a8e6cf">
+            </div>
+        </header>
+
+        <main>
+            <!-- Quick-Show Mode -->
+            <section class="card alert-card">
+                <h2>🚨 Police Check Quick-Show</h2>
+                <p>Instantly pull up all legal documents.</p>
+                <button id="quick-show-btn" class="primary-btn">Show All Documents</button>
+            </section>
+
+            <!-- Document Vault -->
+            <section class="card">
+                <h2>📁 Digital Document Vault</h2>
+                <p>Upload your documents. AI will extract the expiry dates automatically.</p>
+                
+                <div class="upload-grid">
+                    <div class="upload-box">
+                        <h3>Driver's License</h3>
+                        <input type="file" id="upload-dl" accept="image/*,.pdf">
+                        <label for="upload-dl" class="upload-btn">Upload DL</label>
+                        <p class="status" id="status-dl">Not uploaded</p>
+                    </div>
+                    <div class="upload-box">
+                        <h3>Registration (RC)</h3>
+                        <input type="file" id="upload-rc" accept="image/*,.pdf">
+                        <label for="upload-rc" class="upload-btn">Upload RC</label>
+                        <p class="status" id="status-rc">Not uploaded</p>
+                    </div>
+                    <div class="upload-box">
+                        <h3>Insurance</h3>
+                        <input type="file" id="upload-insurance" accept="image/*,.pdf">
+                        <label for="upload-insurance" class="upload-btn">Upload Insurance</label>
+                        <p class="status" id="status-insurance">Not uploaded</p>
+                    </div>
+                    <div class="upload-box">
+                        <h3>PUC Certificate</h3>
+                        <input type="file" id="upload-puc" accept="image/*,.pdf">
+                        <label for="upload-puc" class="upload-btn">Upload PUC</label>
+                        <p class="status" id="status-puc">Not uploaded</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workshop Bill Vault -->
+            <section class="card">
+                <h2>🛠️ Workshop Bill Vault</h2>
+                <p>Log replaced spare parts to prevent overcharging.</p>
+                <div class="upload-box">
+                    <input type="file" id="upload-bill" accept="image/*,.pdf">
+                    <label for="upload-bill" class="upload-btn">Upload Invoice</label>
+                </div>
+            </section>
+
+            <!-- AI Output Section (Hidden by default until AI responds) -->
+            <section class="card" id="output-section" style="display: none;">
+                <h2>System Output</h2>
+                <div id="ai-output-data"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Links our logic file to the HTML -->
+    <script src="app.js"></script>
+</body>
+</html>    
