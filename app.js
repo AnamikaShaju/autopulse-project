@@ -46,3 +46,19 @@ fileInputs.forEach(input => {
         }
     });
 });
+
+// 3. SIDEBAR NAVIGATION LOGIC
+const sidebarItems = document.querySelectorAll('.menu-list li');
+
+sidebarItems.forEach(item => {
+    item.addEventListener('click', () => {
+        // Step A: Remove the orange 'active' highlight from all menu items
+        sidebarItems.forEach(el => el.classList.remove('active'));
+        
+        // Step B: Add the orange 'active' highlight to the specific item you just clicked
+        item.classList.add('active');
+        
+        // Step C: Show a popup since we haven't built the other HTML pages yet
+        alert("Navigating to module...\n\n(This will load a different page once we build the rest of the application!)");
+    });
+});
