@@ -6,6 +6,14 @@ if (quickShowBtn) {
     });
 }
 
+// Helper function to convert an image file into a Base64 text string
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(',')[1]); 
+    reader.onerror = error => reject(error);
+});
+
 // 2. DOCUMENT UPLOAD & AI PROCESSING LOGIC
 const fileInputs = document.querySelectorAll('input[type="file"]');
 
@@ -14,33 +22,49 @@ fileInputs.forEach(input => {
         const file = event.target.files[0];
         if (!file) return;
 
-        // Find the specific status text cell in our new table
         const documentType = input.id.split('-')[1]; // e.g., 'dl', 'rc', 'bill'
         const statusEl = document.getElementById(`status-${documentType}`);
         
         if (statusEl) {
-            statusEl.textContent = `Scanning ${file.name}...`;
+            statusEl.textContent = `Analyzing with AI...`;
             statusEl.style.color = "var(--accent)";
         }
 
         try {
-            const formData = new FormData();
-            formData.append('document', file);
-            formData.append('type', documentType);
+            // Convert the image to text
+            const base64Data = await toBase64(file);
             
-            // For local testing before connecting the real AI
-            setTimeout(() => {
+            // Send the text to our Vercel Serverless Function
+            const response = await fetch('/api/analyze-document', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    image: base64Data,
+                    mimeType: file.type,
+                    type: documentType
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
                 if (statusEl) {
-                    statusEl.textContent = "Ready for AI Analysis";
-                    statusEl.style.color = "#00e676"; // Green success color
+                    statusEl.textContent = "AI Analysis Complete!";
+                    statusEl.style.color = "#00e676";
                 }
-                console.log(`Prepared ${file.name} for backend AI processing.`);
-            }, 1000);
+                // Show the user what the AI found!
+                console.log("AI Data:", data);
+                alert("🤖 AI Successfully Extracted:\n\n" + JSON.stringify(data.extractedData, null, 2));
+            } else {
+                throw new Error(data.error || "Failed to analyze");
+            }
 
         } catch (error) {
             console.error("Upload error:", error);
             if (statusEl) {
-                statusEl.textContent = "Upload failed.";
+                statusEl.textContent = "AI Analysis Failed.";
                 statusEl.style.color = "red";
             }
         }
@@ -54,13 +78,11 @@ sidebarItems.forEach(item => {
     item.addEventListener('click', () => {
         const itemName = item.textContent.trim();
         
-        // Navigate based on which menu item was clicked
         if (itemName.includes('Document Vault')) {
             window.location.href = 'index.html';
         } else if (itemName.includes('Workshop Bills')) {
             window.location.href = 'workshop-bills.html';
         } else {
-            // Keep the popup ONLY for pages we haven't built yet (like Fuel Logs)
             alert(itemName + " module is under construction!");
         }
     });
