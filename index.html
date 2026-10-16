@@ -3,85 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoPulse | Digital Glovebox</title>
+    <title>AutoPulse | Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- This empty div is for our grainy background texture effect -->
-    <div class="grain-overlay"></div>
-
-    <div class="container">
-        <header>
-            <h1>AutoPulse</h1>
-            <p>Your Digital Glovebox & Vehicle Companion</p>
-            
-            <!-- Customizable Pastel Color Picker -->
-            <div class="color-picker-container">
-                <label for="accent-color">Accent Color:</label>
-                <input type="color" id="accent-color" value="#a8e6cf">
+    <div class="app-container">
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">⬡</span> AutoPulse
             </div>
-        </header>
+            
+            <div class="menu-section">
+                <p class="menu-label">PAGES</p>
+                <ul class="menu-list">
+                    <li><span class="icon">📊</span> Dashboard <span class="arrow">›</span></li>
+                    <li><span class="icon">🚘</span> My Vehicles <span class="arrow">›</span></li>
+                    <li class="active"><span class="icon">📁</span> Document Vault <span class="badge">1</span> <span class="arrow">›</span></li>
+                    <li><span class="icon">🛠️</span> Workshop Bills <span class="arrow">›</span></li>
+                    <li><span class="icon">⛽</span> Fuel Logs <span class="arrow">›</span></li>
+                </ul>
+            </div>
 
-        <main>
-            <!-- Quick-Show Mode -->
-            <section class="card alert-card">
-                <h2>🚨 Police Check Quick-Show</h2>
-                <p>Instantly pull up all legal documents.</p>
-                <button id="quick-show-btn" class="primary-btn">Show All Documents</button>
-            </section>
+            <div class="menu-section">
+                <p class="menu-label">UI ELEMENTS</p>
+                <ul class="menu-list">
+                    <li><span class="icon">⚙️</span> Settings</li>
+                    <li><span class="icon">🔔</span> Alerts</li>
+                </ul>
+            </div>
 
-            <!-- Document Vault -->
-            <section class="card">
-                <h2>📁 Digital Document Vault</h2>
-                <p>Upload your documents. AI will extract the expiry dates automatically.</p>
-                
-                <div class="upload-grid">
-                    <div class="upload-box">
-                        <h3>Driver's License</h3>
-                        <input type="file" id="upload-dl" accept="image/*,.pdf">
-                        <label for="upload-dl" class="upload-btn">Upload DL</label>
-                        <p class="status" id="status-dl">Not uploaded</p>
-                    </div>
-                    <div class="upload-box">
-                        <h3>Registration (RC)</h3>
-                        <input type="file" id="upload-rc" accept="image/*,.pdf">
-                        <label for="upload-rc" class="upload-btn">Upload RC</label>
-                        <p class="status" id="status-rc">Not uploaded</p>
-                    </div>
-                    <div class="upload-box">
-                        <h3>Insurance</h3>
-                        <input type="file" id="upload-insurance" accept="image/*,.pdf">
-                        <label for="upload-insurance" class="upload-btn">Upload Insurance</label>
-                        <p class="status" id="status-insurance">Not uploaded</p>
-                    </div>
-                    <div class="upload-box">
-                        <h3>PUC Certificate</h3>
-                        <input type="file" id="upload-puc" accept="image/*,.pdf">
-                        <label for="upload-puc" class="upload-btn">Upload PUC</label>
-                        <p class="status" id="status-puc">Not uploaded</p>
+            <div class="menu-section">
+                <p class="menu-label">DOCUMENTATION & SUPPORT</p>
+                <ul class="menu-list">
+                    <li><span class="icon">📄</span> Documentation <span class="arrow">›</span></li>
+                    <li><span class="icon">🎧</span> Support <span class="arrow">›</span></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="main-content">
+            <!-- TOP NAVBAR -->
+            <header class="topbar">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="user-profile">
+                    <span class="notification-icon">🔔</span>
+                    <span class="message-icon">✉️</span>
+                    <div class="profile-info">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Austin" alt="Profile" class="avatar">
+                        <div class="profile-text">
+                            <span class="name">Austin Robertson</span>
+                            <span class="role">Vehicle Owner</span>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </header>
 
-            <!-- Workshop Bill Vault -->
-            <section class="card">
-                <h2>🛠️ Workshop Bill Vault</h2>
-                <p>Log replaced spare parts to prevent overcharging.</p>
-                <div class="upload-box">
-                    <input type="file" id="upload-bill" accept="image/*,.pdf">
-                    <label for="upload-bill" class="upload-btn">Upload Invoice</label>
+            <main>
+                <h1 class="page-title">Document Vault</h1>
+
+                <!-- HERO SECTION -->
+                <div class="hero-card">
+                    <div class="hero-text">
+                        <h2>Welcome to AutoPulse Vault</h2>
+                        <p>Securely store, manage, and track expiries for your Vehicle Documents & Invoices</p>
+                        <div class="hero-buttons">
+                            <button id="quick-show-btn" class="btn-primary">Quick-Show Mode</button>
+                            <label for="upload-bill" class="btn-secondary">Upload Bill</label>
+                            <input type="file" id="upload-bill" accept="image/*,.pdf" style="display:none;">
+                        </div>
+                    </div>
+                    <div class="hero-graphics">
+                        <!-- Placeholder for stacked cards aesthetic -->
+                        <div class="graphic-card card-back">RC</div>
+                        <div class="graphic-card card-middle">PUC</div>
+                        <div class="graphic-card card-front">DL</div>
+                    </div>
                 </div>
-            </section>
 
-            <!-- AI Output Section (Hidden by default until AI responds) -->
-            <section class="card" id="output-section" style="display: none;">
-                <h2>System Output</h2>
-                <div id="ai-output-data"></div>
-            </section>
-        </main>
+                <!-- TABLE SECTION -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Saved Documents</h3>
+                        <div class="table-filters">
+                            <span class="filter active">ALL</span>
+                            <span class="filter">LEGAL</span>
+                            <span class="filter">SERVICE</span>
+                            <span class="filter">BILLS</span>
+                        </div>
+                        <div class="table-search">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" placeholder="Search">
+                        </div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Document Type</th>
+                                <th>Upload Status</th>
+                                <th>Valid Until</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <div class="doc-title">
+                                        <span class="doc-icon">🪪</span> Driver's License
+                                    </div>
+                                </td>
+                                <td id="status-dl" class="status-text">Not uploaded</td>
+                                <td>--</td>
+                                <td>
+                                    <label for="upload-dl" class="upload-link">Upload DL</label>
+                                    <input type="file" id="upload-dl" accept="image/*,.pdf" style="display:none;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div class="doc-title">
+                                        <span class="doc-icon">📄</span> Registration (RC)
+                                    </div>
+                                </td>
+                                <td id="status-rc" class="status-text">Not uploaded</td>
+                                <td>--</td>
+                                <td>
+                                    <label for="upload-rc" class="upload-link">Upload RC</label>
+                                    <input type="file" id="upload-rc" accept="image/*,.pdf" style="display:none;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <div class="doc-title">
+                                        <span class="doc-icon">🛡️</span> Insurance
+                                    </div>
+                                </td>
+                                <td id="status-insurance" class="status-text">Not uploaded</td>
+                                <td>--</td>
+                                <td>
+                                    <label for="upload-insurance" class="upload-link">Upload Ins.</label>
+                                    <input type="file" id="upload-insurance" accept="image/*,.pdf" style="display:none;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <div class="doc-title">
+                                        <span class="doc-icon">💨</span> PUC Certificate
+                                    </div>
+                                </td>
+                                <td id="status-puc" class="status-text">Not uploaded</td>
+                                <td>--</td>
+                                <td>
+                                    <label for="upload-puc" class="upload-link">Upload PUC</label>
+                                    <input type="file" id="upload-puc" accept="image/*,.pdf" style="display:none;">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- AI Output Section (Hidden by default) -->
+                <div id="output-section" class="output-card" style="display: none;">
+                    <h3>AI Analysis Results</h3>
+                    <div id="ai-output-data" class="code-block"></div>
+                </div>
+
+            </main>
+        </div>
     </div>
 
-    <!-- Links our logic file to the HTML -->
     <script src="app.js"></script>
 </body>
-</html>    
+</html>
